@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    div.canvas {
+      position: relative;
+
+      top: 30%;
+      left: 45%;
+      border-radius: 50%;
+      height: 120px;
+      width: 120px;
+    }
+
+    .heart {
+      position: absolute;
+      margin: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: #eca4b5;
+      height: 50px;
+      width: 50px;
+
+      transform: rotate(-45deg);
+    }
+    .heart::after {
+      background-color: #eca4b5;
+      content: "";
+      border-radius: 50%;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      top: 0px;
+      left: 25px;
+    }
+    .heart::before {
+      content: "";
+      background-color: #eca4b5;
+      border-radius: 50%;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      top: -25px;
+      left: 0px;
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    html {
+      background-color: #f5f5f5;
+    }
+    body {
+      color: #999999;
+      font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: 0;
+      margin: 0;
+      padding: 1rem;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img {
+      height: auto;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+    .btn {
+      background-color: white;
+      border: 1px solid #cccccc;
+      color: #696969;
+      padding: 0.5rem;
+      text-transform: lowercase;
+    }
+    .btn--block {
+      display: block;
+      width: 100%;
+    }
+    .cards {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+    .cards__item {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      padding: 1rem;
+    }
+    @media (min-width: 40rem) {
+      .cards__item {
+        width: 50%;
+      }
+    }
+    @media (min-width: 56rem) {
+      .cards__item {
+        width: 33.3333%;
+      }
+    }
+    .card {
+      background-color: white;
+      border: 1px solid #bfbfbf;
+      border-radius: 0.25rem;
+      box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.38);
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .card:hover .card__image {
+      -webkit-filter: contrast(100%);
+      filter: contrast(100%);
+    }
+    .card__content {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      padding: 1rem;
+    }
+    .card__image {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      -webkit-filter: contrast(70%);
+      filter: contrast(70%);
+      overflow: hidden;
+      position: relative;
+      -webkit-transition: -webkit-filter 0.5s
+        cubic-bezier(0.43, 0.41, 0.22, 0.91);
+      transition: -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+      transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+      transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91),
+        -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+    }
+    .card__image::before {
+      content: "";
+      display: block;
+      padding-top: 56.25%;
+    }
+    @media (min-width: 40rem) {
+      .card__image::before {
+        padding-top: 66.6%;
+      }
+    }
+    .card__image--flowers {
+      background-image: url(https://unsplash.it/800/600?image=82);
+    }
+    .card__image--river {
+      background-image: url(https://unsplash.it/800/600?image=11);
+    }
+    .card__image--record {
+      background-image: url(https://unsplash.it/800/600?image=39);
+    }
+    .card__image--fence {
+      background-image: url(https://unsplash.it/800/600?image=59);
+    }
+    .card__title {
+      color: #696969;
+      font-size: 1.25rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .card__text {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+  </style>
+  <body>
+    <nav class="navbar bg-light" style="background-color: #f7faf9">
+      <div class="container-fluid">
+        <h1 class="navbar-text" style="font-size: 40px">
+          KHLOUD ALABDULLAH BLOG
+        </h1>
+        <div class="canvas">
+          <div class="heart"></div>
+        </div>
+      </div>
+      <div class="text-left"><p>i hope you like it</p></div>
+    </nav>
+
+    <ul class="cards">
+      <li class="cards__item">
+        <div class="card">
+          <div class="card__image card__image--fence"></div>
+          <div class="card__content">
+            <div class="card__title">photo</div>
+            <p class="card__text">
+              This is the shorthand for flex-grow, flex-shrink and flex-basis
+              combined. The second and third parameters (flex-shrink and
+              flex-basis) are optional. Default is 0 1 auto.
+            </p>
+            <a class="btn btn--block card__btn" href="index2.html">+</a>
+          </div>
+        </div>
+      </li>
+      <li class="cards__item">
+        <div class="card">
+          <div class="card__image card__image--river"></div>
+          <div class="card__content">
+            <div class="card__title">photo</div>
+            <p class="card__text">
+              This defines the ability for a flex item to grow if necessary. It
+              accepts a unitless value that serves as a proportion. It dictates
+              what amount of the available space inside the flex container the
+              item should take up.
+            </p>
+            <a class="btn btn--block card__btn">+</a>
+          </div>
+        </div>
+      </li>
+      <li class="cards__item">
+        <div class="card">
+          <div class="card__image card__image--record"></div>
+          <div class="card__content">
+            <div class="card__title">photo</div>
+            <p class="card__text">
+              This defines the ability for a flex item to shrink if necessary.
+              Negative numbers are invalid.
+            </p>
+            <a class="btn btn--block card__btn">+</a>
+          </div>
+        </div>
+      </li>
+      <li class="cards__item">
+        <div class="card">
+          <div class="card__image card__image--flowers"></div>
+          <div class="card__content">
+            <div class="card__title">photo</div>
+            <p class="card__text">
+              This defines the default size of an element before the remaining
+              space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or
+              a keyword. The auto keyword means "look at my width or height
+              property."
+            </p>
+            <a class="btn btn--block card__btn">+</a>
+          </div>
+        </div>
+      </li>
+      <li class="cards__item">
+        <div class="card">
+          <div class="card__image card__image--flowers"></div>
+          <div class="card__content">
+            <div class="card__title">photo</div>
+            <p class="card__text">
+              This defines the default size of an element before the remaining
+              space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or
+              a keyword. The auto keyword means "look at my width or height
+              property."
+            </p>
+            <a class="btn btn--block card__btn">+</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <!--fffffffffffffffff-->
+    <footer class="bg-light text-center text-lg-start">
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2023:
+        <a class="text-dark">KH</a>
+      </div>
+
+      <!-- Copyright -->
+    </footer>
+  </body>
+</html>

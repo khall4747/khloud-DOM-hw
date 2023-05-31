@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      .card__image {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        -webkit-filter: contrast(70%);
+        filter: contrast(70%);
+        overflow: hidden;
+        position: relative;
+        -webkit-transition: -webkit-filter 0.5s
+          cubic-bezier(0.43, 0.41, 0.22, 0.91);
+        transition: -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+        transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+        transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91),
+          -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+      }
+      div.canvas {
+        position: relative;
+
+        top: 30%;
+        left: 45%;
+        border-radius: 50%;
+        height: 120px;
+        width: 120px;
+      }
+
+      .heart {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #eca4b5;
+        height: 50px;
+        width: 50px;
+
+        transform: rotate(-45deg);
+      }
+      .heart::after {
+        background-color: #eca4b5;
+        content: "";
+        border-radius: 50%;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 0px;
+        left: 25px;
+      }
+      .heart::before {
+        content: "";
+        background-color: #eca4b5;
+        border-radius: 50%;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: -25px;
+        left: 0px;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        color: #999999;
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: 0;
+        margin: 0;
+        padding: 1rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
+  </head>
+  <body style="text-align: center; background-color: #f7faf9">
+    <nav class="navbar bg-light" style="background-color: #f7faf9">
+      <div class="container-fluid">
+        <h1 class="navbar-text" style="font-size: 40px">
+          KHLOUD ALABDULLAH BLOG
+        </h1>
+        <div class="canvas">
+          <div class="heart"></div>
+        </div>
+      </div>
+      <div class="text-left"><p>i hope you like it</p></div>
+    </nav>
+
+    <img
+      src="https://unsplash.it/800/600?image=59"
+      width="500px"
+      height="200px"
+      class="card__image"
+    />
+    <br />
+    <br />
+    <form id="formId">
+      <span>
+        <label style="font-size: 20px"> add your comment</label>
+        <br />
+
+        <textarea
+          type="text"
+          id="name1"
+          class="form-control-plaintext"
+          style="width: 300px; height: 80px"
+        >
+        </textarea>
+        <br />
+        <br />
+        <button onclick=" comment()" class="btn btn-secondary">+</button>
+        <p id="demo"></p>
+      </span>
+      <button id="myButton" class="btn btn-info">
+        like <span id="emo"></span>
+      </button>
+    </form>
+
+    <script src="script.js"></script>
+  </body>
+</html>
